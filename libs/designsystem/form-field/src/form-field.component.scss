@@ -1,0 +1,100 @@
+@use '@kirbydesign/core/src/scss/interaction-state';
+@use '@kirbydesign/core/src/scss/utils';
+
+:host {
+  display: block;
+  position: relative; // Ensures correct position of cloned child input when Ionic scrollAssist is enabled
+  margin-bottom: utils.size('s');
+}
+
+:host-context(kirby-item) {
+  margin-bottom: 0;
+}
+
+.texts {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px utils.size('s') 0 utils.size('s');
+
+  .message {
+    flex: 75%;
+
+    &:only-child {
+      flex-basis: auto;
+    }
+  }
+
+  .counter {
+    flex: 25%;
+    text-align: right;
+  }
+}
+
+label {
+  display: block;
+}
+
+.text {
+  display: block;
+  font-size: utils.font-size('s');
+  font-weight: utils.font-weight('light');
+  line-height: utils.line-height('s');
+  margin-bottom: utils.size('xxs');
+  padding: 0 utils.size('s');
+}
+
+.affix-container {
+  position: relative;
+
+  .vertical-align {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+
+  .prefix {
+    left: utils.size('xs');
+  }
+
+  .suffix {
+    right: utils.size('xs');
+  }
+
+  .semi-dark-text {
+    @include utils.slotted(span, h1, h2, h3, h4, h5, h6, p, data) {
+      color: utils.get-text-color('semi-dark');
+    }
+  }
+}
+
+// Background color needs to be synchronized with input.component
+// Background color must be fully opaque to cover native icon
+.affix-container:has(input[type='date']) {
+  --date-input-background-color: var(--kirby-inputs-background-color);
+
+  @include interaction-state.apply-hover {
+    --date-input-background-color: #e0e0e0;
+  }
+
+  @include interaction-state.apply-active {
+    --date-input-background-color: #cbcbcb;
+  }
+
+  // Cover native calendar icon if custom icon is present
+  & .suffix:not(:empty) {
+    top: utils.size('xxs');
+    bottom: utils.size('xxs');
+
+    // Part of covering native icon (not bulletproof)
+    // and add space between icon and text
+    padding-inline-start: utils.size('xs');
+
+    // Clicks etc. hit native icon/button instead of suffixed element
+    pointer-events: none;
+    background-color: var(--date-input-background-color);
+    transition: interaction-state.transition();
+    transition-property: background-color;
+  }
+}

@@ -1,0 +1,64 @@
+/*
+  You can add global styles to this file, and also import other style files
+*/
+// Import common styles
+@use '@kirbydesign/core/src/scss/global-styles';
+@use '@kirbydesign/core/src/scss/utils';
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  background-color: utils.get-color('white');
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  font-size: utils.font-size('n');
+  color: utils.get-color('black');
+  height: 100vh;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+// The <cookbook-code-viewer> component prefixes the class attribute
+// with "language-" on <code> elements. Do not target those.
+code:not([class*='language-']) {
+  border-radius: utils.size('xxxs');
+  background-color: utils.get-color('semi-light');
+  padding: utils.size('xxxxs') utils.size('xxxs');
+}
+
+.my-custom-modal-class {
+  --kirby-modal-background: #{utils.get-color('black')};
+  --kirby-modal-color: #{utils.get-color('black-contrast')};
+  --kirby-modal-footer-background: #{utils.get-color('dark')};
+  --kirby-modal-footer-color: #{utils.get-color('dark-contrast')};
+
+  button[kirby-button] {
+    &.attention-level3 {
+      --kirby-button-border-color: #{utils.get-color('white')};
+      --kirby-button-color: #{utils.get-color('white')};
+    }
+
+    &.attention-level4 {
+      --kirby-button-color: #{utils.get-color('white')};
+    }
+  }
+
+  code {
+    background-color: utils.get-color('dark');
+    color: utils.get-color('dark-contrast');
+  }
+}
+
+.comment {
+  font-style: italic;
+  color: utils.get-text-color('semi-dark');
+
+  &.small {
+    font-size: smaller;
+  }
+}

@@ -1,0 +1,44 @@
+@use 'sass:math';
+
+@use '@kirbydesign/core/src/scss/utils';
+
+/* Configure grid properties */
+$columns: 12;
+$gap: utils.size('m');
+
+/* Declare the grid container */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+/* Let grid items span all columns by default */
+.grid-item {
+  grid-column: span $columns;
+}
+
+/* Tablet size and above */
+@include utils.media('>=medium') {
+  .half-at-tablet-up {
+    grid-column: span ($columns * 0.5);
+  }
+}
+
+/* Desktop size and above */
+@include utils.media('>=large') {
+  .half-at-desktop-up {
+    grid-column: span ($columns * 0.5);
+  }
+
+  .third-at-desktop-up {
+    grid-column: span math.div($columns, 3);
+  }
+}
+
+/* Additional styles that are not essential to the example */
+main {
+  background-color: var(--kirby-background-color);
+  min-height: 100%;
+  padding-block: 2rem 5rem;
+}

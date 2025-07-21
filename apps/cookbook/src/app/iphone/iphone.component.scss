@@ -1,0 +1,171 @@
+@use '@kirbydesign/core/src/scss/utils';
+
+:host(.full-size) {
+  iframe {
+    border-radius: utils.size('xs');
+  }
+
+  .docs-demo-device {
+    display: flex;
+    position: relative;
+    min-height: var(--docs-demo-device-height, 500px);
+    border: 1px solid #ddd;
+    border-radius: utils.size('xs');
+    margin-bottom: utils.size('xs');
+  }
+
+  .docs-demo-device.ios .docs-demo-device-ios-notch,
+  .docs-demo-device.ios figure::after {
+    display: none;
+  }
+
+  figure {
+    display: contents;
+  }
+}
+
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: utils.size('xs');
+  justify-content: flex-end;
+  padding-bottom: utils.size('xs');
+}
+
+/* stylelint-disable custom-property-pattern */
+.container {
+  text-align: center;
+}
+
+.docs-demo-device {
+  --device-aspect-ratio: 2.125;
+  --device-padding: 2rem;
+
+  padding: var(--device-padding);
+  top: 0;
+}
+
+.docs-demo-device > figure {
+  border-radius: 32px;
+  box-shadow: 0 0 0 14px #090a0d, 0 0 0 17px #9fa3a8, 0 0 34px 17px rgb(0 0 0 / 20%);
+  height: 0;
+  margin: 0 auto;
+  max-width: 320px;
+  min-width: 320px;
+  overflow: hidden;
+  padding-bottom: 680px;
+  position: relative;
+  width: calc(
+    (100vh - var(--header-height) - var(--device-padding) * 2) / var(--device-aspect-ratio)
+  );
+  z-index: 1;
+}
+
+.docs-demo-device > figure > iframe {
+  border: none;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.docs-demo-mode-toggle {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.docs-demo-mode-toggle button {
+  background-color: transparent;
+  border: none;
+  border-radius: 16px;
+  color: var(--text-color--light);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 24px;
+  margin: 0 3px;
+  padding: 0 9px;
+  text-transform: uppercase;
+  transition: 200ms background-color ease, 200ms color ease;
+}
+
+.docs-demo-mode-toggle button:focus,
+.docs-demo-mode-toggle button:active {
+  outline: none;
+}
+
+.docs-demo-mode-toggle button.is-selected {
+  background-color: var(--text-color--dark);
+  color: white;
+}
+
+.docs-demo-source {
+  align-items: center;
+  display: flex;
+  font-size: 13px;
+  justify-content: center;
+}
+
+.docs-demo-source > ion-icon {
+  margin-right: 5px;
+}
+
+@include utils.media('<medium') {
+  .docs-demo-device,
+  .pop-out {
+    display: none;
+  }
+}
+
+.docs-demo-device-ios-notch {
+  display: none;
+  fill: #090a0d;
+  left: 50%;
+  position: absolute;
+  top: -1px;
+  transform: translateX(-50%);
+  width: 165px;
+  z-index: 2;
+}
+
+.docs-demo-device.ios figure::after {
+  background-color: rgb(0 0 0 / 50%);
+  border-radius: 2px;
+  bottom: 6px;
+  content: '';
+  display: none;
+  height: 4px;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 35%;
+  z-index: 1;
+}
+
+.docs-demo-device.ios .docs-demo-device-ios-notch,
+.docs-demo-device.ios figure::after {
+  display: block;
+}
+
+.docs-demo-device.md figure {
+  border-radius: 20px;
+}
+
+.docs-demo-device-md-bar {
+  display: none;
+}
+
+.docs-demo-device.md .docs-demo-device-md-bar {
+  display: block;
+  fill: #090a0d;
+  opacity: 0.1;
+  padding: 0.5rem 0.75rem;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}

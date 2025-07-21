@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "declaration": true,
+    "types": []
+  },
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "strictTemplates": true,
+    "strictDomEventTypes": false,
+    "strictInjectionParameters": true,
+    "enableResourceInlining": true,
+    "inlineSourceMap": true,
+    "compilationMode": "partial"
+  },
+  "exclude": ["src/test.ts", "**/*.spec.ts", "**/*.stories.ts", "**/*.stories.js"],
+  "include": ["**/*.ts"]
+}

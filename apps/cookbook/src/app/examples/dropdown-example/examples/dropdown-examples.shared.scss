@@ -1,0 +1,18 @@
+@use 'sass:map';
+@use '@kirbydesign/core/src/scss/utils';
+
+kirby-card {
+  margin-block: utils.size('m');
+
+  &.attention-levels {
+    max-width: map.get(utils.$breakpoints, 'xsmall');
+  }
+
+  kirby-dropdown + kirby-dropdown {
+    margin-top: utils.size('s');
+  }
+}
+
+p {
+  margin-top: utils.size('s');
+}

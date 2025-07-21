@@ -1,0 +1,9 @@
+@use './item-sliding.shared';
+
+:host {
+  display: block;
+}
+
+ion-item-option {
+  min-width: 92px;
+}

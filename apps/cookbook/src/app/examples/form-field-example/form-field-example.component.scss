@@ -1,0 +1,7 @@
+@use '../examples.shared';
+
+kirby-card {
+  --kirby-card-width: min(500px, 100%);
+
+  margin: 1rem auto;
+}

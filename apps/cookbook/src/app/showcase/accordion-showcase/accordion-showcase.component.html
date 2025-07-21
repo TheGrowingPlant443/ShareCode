@@ -1,0 +1,81 @@
+<div class="example">
+  <p>
+    An accordion is a vertically stacked list of headers that reveal or hide related sections of
+    content.
+  </p>
+  <h2>Setup</h2>
+  <p>
+    Accordions use Angular animations for animating between its collapsed and expanded state. As no
+    other components depend on the package it is not bundled with Kirby for performance reasons and
+    should instead be provided in the application as detailed in the Angular docs for
+    <a href="https://angular.dev/guide/animations#enabling-the-animations-module">
+      enabling the animations module
+    </a>
+    .
+  </p>
+  <h2>Simple accordion</h2>
+  <cookbook-example-viewer [html]="accordionDefaultExample.template">
+    <cookbook-accordion-default-example
+      #accordionDefaultExample
+    ></cookbook-accordion-default-example>
+  </cookbook-example-viewer>
+
+  <h3>With initially expanded item</h3>
+  <p>
+    It is possible to have an accordion expanded initially to draw attention to specific information.
+  </p>
+  <cookbook-example-viewer [html]="accordionExpandedExample.template">
+    <cookbook-accordion-expanded-example
+      #accordionExpandedExample
+    ></cookbook-accordion-expanded-example>
+  </cookbook-example-viewer>
+
+  <h2>Accordion inside a card</h2>
+  <p>
+    The accordion can be wrapped in a Kirby Card to make it stand out from the canvas.
+  </p>
+  <cookbook-example-viewer [html]="accordionCardExample.template">
+    <cookbook-accordion-card-example #accordionCardExample></cookbook-accordion-card-example>
+  </cookbook-example-viewer>
+
+  <h2>Accordion with list</h2>
+  <p>
+    Placing a list within an accordion item will automatically adapt spacing and strip the necessary
+    list-styling to ensure that the list looks correct without further adjustments.
+  </p>
+  <cookbook-example-viewer [html]="accordionWithListExample.template">
+    <cookbook-accordion-with-list-example
+      #accordionWithListExample
+    ></cookbook-accordion-with-list-example>
+  </cookbook-example-viewer>
+
+  <h3>Additional styling</h3>
+  <p>
+    Similarly to the simple accordion, the accordion with a list can also be wrapped in a Kirby Card to
+    make it stand out from the canvas.
+  </p>
+  <cookbook-example-viewer [html]="accordionWithListInCardExample.template">
+    <cookbook-accordion-with-list-in-card-example
+      #accordionWithListInCardExample
+    ></cookbook-accordion-with-list-in-card-example>
+  </cookbook-example-viewer>
+
+  <h2>Accordion toggle event</h2>
+  <p>
+    A toggle event is emitted whenever an accordion is expanded or collapsed.
+  </p>
+  <cookbook-example-viewer
+    [html]="accordionEventExample.template"
+    [ts]="accordionEventExample.codeSnippet"
+  >
+    <cookbook-accordion-events-example #accordionEventExample></cookbook-accordion-events-example>
+  </cookbook-example-viewer>
+
+  <h2>Properties:</h2>
+  <cookbook-api-description-properties
+    [properties]="properties"
+  ></cookbook-api-description-properties>
+
+  <h2>Events</h2>
+  <cookbook-api-description-events [events]="events"></cookbook-api-description-events>
+</div>

@@ -1,0 +1,208 @@
+{
+  "componentConfiguration": [
+    {
+      "title": "Accordion",
+      "paragraph": "Accordion is a vertically stacked list of headers that allows users to reveal or hide related sections of content.",
+      "svgPath": "./assets/component-svg/Accordion-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/accordion"
+    },
+    {
+      "title": "Action Sheet",
+      "paragraph": "Action Sheet is a context menu that overlays content, requires manual dismissal, and offer related choices to the current context",
+      "svgPath": "./assets/component-svg/Action-Sheet-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/action-sheet"
+    },
+    {
+      "title": "Alert",
+      "paragraph": "Alert is the most urgent notification, demanding immediate attention and persisting until dismissed by the user. It conveys important information and warnings.",
+      "svgPath": "./assets/component-svg/Alert-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/alert"
+    },
+    {
+      "title": "Avatar",
+      "paragraph": "Avatar is a circular component that visually represents a user or object, utilizing images, icons, or text/initials for clear identification.",
+      "svgPath": "./assets/component-svg/Avatar-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/avatar"
+    },
+    {
+      "title": "Badge",
+      "paragraph": "Badge is a small, helpful element used to display numeric values or icons, providing additional information or visual hint to complement other components.",
+      "svgPath": "./assets/component-svg/Badge-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/badge"
+    },
+    {
+      "title": "Button",
+      "paragraph": "Button allows users to perform actions and make choices with a single tap, such as submitting forms and triggering actions.",
+      "svgPath": "./assets/component-svg/Button-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/button"
+    },
+    {
+      "title": "Calendar",
+      "paragraph": "The calendar is a picker interface that displays a date grid with month navigation, for users to select a single date.",
+      "svgPath": "./assets/component-svg/Calendar-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/calendar"
+    },
+    {
+      "title": "Card",
+      "paragraph": "Card is a container for displaying content related to a subject or group, offering structured layouts for various elements.",
+      "svgPath": "./assets/component-svg/Card-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/card"
+    },
+    {
+      "title": "Chart",
+      "paragraph": "Chart visually represents data using diverse chart types, providing valuable insights into trends and patterns for enhanced data comprehension.",
+      "svgPath": "./assets/component-svg/Chart-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/chart"
+    },
+    {
+      "title": "Chart Stock",
+      "paragraph": "Chart Stock visually illustrates historical security prices over time, utilizing a time-based x- axis and a price-based y-axis.",
+      "svgPath": "./assets/component-svg/Chart-Stock-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/chart-stock"
+    },
+    {
+      "title": "Checkbox",
+      "paragraph": "Checkbox enables users to independently select multiple options from a set, offering flexible control for choosing preferences.",
+      "svgPath": "./assets/component-svg/Checkbox-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/checkbox"
+    },
+    {
+      "title": "Colors",
+      "paragraph": "Colors serve as a repository for Kirby's brand colors, guaranteeing uniform and harmonious color usage.",
+      "svgPath": "./assets/component-svg/Colors-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/colors"
+    },
+    {
+      "title": "Data Table",
+      "paragraph": "Data Table displays extensive volumes of intricate data in a well-organized, tabular format for comprehensive information presentation.",
+      "svgPath": "./assets/component-svg/Data-Table-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/data-table"
+    },
+    {
+      "title": "Divider",
+      "paragraph": "Divider is a subtle line utilized to distinguish and visually organize elements or content sections",
+      "svgPath": "./assets/component-svg/Divider-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/divider"
+    },
+    {
+      "title": "Dropdown",
+      "paragraph": "Dropdown displays multiple choices for user selection and appears upon interaction with an element.",
+      "svgPath": "./assets/component-svg/Dropdown-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/dropdown"
+    },
+    {
+      "title": "Message State",
+      "paragraph": "Message State provides feedback about the application, content or workflow state to the user while, if possible, giving constructive guidance about next steps.",
+      "svgPath": "./assets/component-svg/Empty-State-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/message-state"
+    },
+    {
+      "title": "FAB",
+      "paragraph": "Floating Action Button is a circular button positioned in the lower right corner, symbolizing the primary action.",
+      "svgPath": "./assets/component-svg/FAB-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/fab-sheet"
+    },
+    {
+      "title": "Flag",
+      "paragraph": "Flag is a color-coded element used to emphasize or aid interpretation of information.",
+      "svgPath": "./assets/component-svg/Flag-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/flag"
+    },
+    {
+      "title": "Fonts",
+      "paragraph": "Fonts provide a showcase of the Kirby font set, demonstrating typography styles to maintain consistency and establish a visual identity.",
+      "svgPath": "./assets/component-svg/Fonts-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/fonts"
+    },
+    {
+      "title": "Form Field",
+      "paragraph": "Form Field is an interactive input element that enables users to enter and edit information.",
+      "svgPath": "./assets/component-svg/Form-Field-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/form-field"
+    },
+    {
+      "title": "Header",
+      "paragraph": "Header is positioned at the top of a page, offering essential page context in a straightforward and topic-relevant manner.",
+      "svgPath": "./assets/component-svg/Header-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/header"
+    },
+    {
+      "title": "Icons",
+      "paragraph": "Icons have a rounded and friendly style, used to represent actions and functions within components.",
+      "svgPath": "./assets/component-svg/Icons-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/icon"
+    },
+    {
+      "title": "Item",
+      "paragraph": "Item is a versatile placeholder that can contain various content elements, used for structuring other components.",
+      "svgPath": "./assets/component-svg/Item-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/item"
+    },
+    {
+      "title": "Menu",
+      "paragraph": "Menu appears on button interaction, offering relevant choices without permanent UI occupation.",
+      "svgPath": "./assets/component-svg/Menu-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/menu"
+    },
+    {
+      "title": "Page",
+      "paragraph": "Page is a layout container for Kirby applications, featuring header and footer sections with responsive design.",
+      "svgPath": "./assets/component-svg/Page-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/page"
+    },
+    {
+      "title": "Progress Circle",
+      "paragraph": "Progress Circle is a circular visualization that shows the ongoing progress of an operation or activity.",
+      "svgPath": "./assets/component-svg/Progress-Circle-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/progress-circle"
+    },
+    {
+      "title": "Radio Button",
+      "paragraph": "Radio Button allows users to make a single selection from a set of options, with the selection of one option automatically deselecting the others.",
+      "svgPath": "./assets/component-svg/Radio-Buttons-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/radio"
+    },
+    {
+      "title": "Range Slider",
+      "paragraph": "Range Slider allows users to select values or ranges within a predefined minimum and maximum range.",
+      "svgPath": "./assets/component-svg/Range-Slider-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/range"
+    },
+    {
+      "title": "Segmented Control",
+      "paragraph": "Segmented Control is a horizontal row of buttons used for toggling between related choices within content.",
+      "svgPath": "./assets/component-svg/Segmented-Control-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/segmented-control"
+    },
+    {
+      "title": "Slide Button",
+      "paragraph": "Slide Button provides a simple and intuitive way for users to perform verification actions.",
+      "svgPath": "./assets/component-svg/Slide-Button-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/slide-button"
+    },
+    {
+      "title": "Slides",
+      "paragraph": "Slides is a collection of cards or content that users can navigate horizontally by swiping or clicking.",
+      "svgPath": "./assets/component-svg/Slides-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/slides"
+    },
+    {
+      "title": "Spinner",
+      "paragraph": "Spinner is a visual indicator that shows ongoing loading processes or actions.",
+      "svgPath": "./assets/component-svg/Spinner-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/spinner"
+    },
+    {
+      "title": "Toast",
+      "paragraph": "Toast is a subtle notification that gives immediate feedback to users after taking an action.",
+      "svgPath": "./assets/component-svg/Toast-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/toast"
+    },
+    {
+      "title": "Toggle",
+      "paragraph": "Toggle is an input control for binary options, commonly used for managing choices and switches.",
+      "svgPath": "./assets/component-svg/Toggle-Kirby-Component-Overview.svg",
+      "route": "/home/showcase/toggle"
+    }
+  ]
+}

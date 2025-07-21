@@ -1,0 +1,30 @@
+@use '@kirbydesign/core/src/scss/utils';
+
+:host {
+  display: block;
+}
+
+h4 {
+  margin: utils.size('s') 0;
+}
+
+pre {
+  position: relative;
+
+  span.label {
+    position: absolute;
+    right: 0;
+    top: 0;
+    line-height: 1;
+    color: utils.get-text-color('semi-dark');
+    border: 1px solid utils.get-color('medium');
+    border-top: none;
+    border-right: none;
+    padding: utils.size('xxxxs');
+    font-size: 0.75em;
+  }
+}
+
+code {
+  white-space: pre-wrap;
+}

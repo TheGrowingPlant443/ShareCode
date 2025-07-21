@@ -1,0 +1,96 @@
+@use '@kirbydesign/core/src/scss/interaction-state';
+@use '@kirbydesign/core/src/scss/utils';
+
+$divider-color: utils.get-color('medium');
+$padding: utils.size('s');
+
+:host {
+  @include interaction-state.initialize-layer;
+
+  // Wrap declarations to avoid mixing with nested rules.
+  // See: https://sass-lang.com/documentation/breaking-changes/mixed-decls/
+  /* stylelint-disable no-duplicate-selectors */
+  & {
+    display: block;
+    border-top: 1px solid $divider-color;
+    border-bottom: 1px solid $divider-color;
+  }
+}
+
+:host(.has-list) {
+  --kirby-item-background: transparent;
+}
+
+.header {
+  @include interaction-state.apply-focus-visible-background('xxxs') {
+    outline: 0;
+  }
+  @include interaction-state.apply-hover('xxxs');
+  @include interaction-state.apply-active('xxs');
+
+  & {
+    display: flex;
+    align-items: center;
+    height: utils.size('xxxl');
+    padding-left: $padding;
+    padding-right: $padding;
+    user-select: none;
+  }
+}
+
+.title {
+  flex-grow: 2;
+}
+
+.kirby-icon {
+  transition: transform utils.get-transition-duration('quick');
+}
+
+.content {
+  overflow: hidden;
+  cursor: default;
+}
+
+.content-body.padding {
+  padding: 0 $padding $padding;
+}
+
+.disabled {
+  pointer-events: none;
+
+  .kirby-icon {
+    color: utils.get-color('semi-dark');
+  }
+
+  .title {
+    color: utils.get-text-color('semi-dark');
+  }
+}
+
+.expanded {
+  .title {
+    font-weight: utils.font-weight('bold');
+  }
+
+  .kirby-icon {
+    transform: rotate(180deg);
+  }
+}
+
+:host-context(kirby-accordion) {
+  &:not(:first-child) {
+    border-top: none;
+  }
+}
+
+:host-context(kirby-card) {
+  border-color: utils.get-color('background-color');
+
+  &:first-child {
+    border-top: none;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}

@@ -1,0 +1,14 @@
+@use '@kirbydesign/core/src/scss/utils';
+
+:host {
+  display: block;
+  margin-bottom: utils.size('s');
+
+  a {
+    margin-right: utils.size('s');
+  }
+}
+
+.trailing-icon-example {
+  @include utils.trailing-icon('navigation');
+}

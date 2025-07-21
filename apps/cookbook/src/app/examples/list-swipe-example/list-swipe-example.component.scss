@@ -1,0 +1,30 @@
+@use '@kirbydesign/core/src/scss/utils';
+
+$item-height: utils.size('xxxl');
+$dot-size: utils.size('xxs');
+$dot-margin: utils.size('xxxs');
+
+:host {
+  display: block;
+  height: 100%;
+  padding: utils.size('s');
+  background-color: utils.get-color('background-color');
+}
+
+.flag {
+  width: 8px;
+  height: 8px;
+  border-radius: utils.border-radius('circle');
+
+  &.success {
+    background: var(--kirby-success);
+  }
+
+  &.warning {
+    background: var(--kirby-warning);
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 2px;
+  }
+}

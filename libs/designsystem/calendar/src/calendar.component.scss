@@ -1,0 +1,123 @@
+@use '@kirbydesign/core/src/scss/interaction-state';
+@use '@kirbydesign/core/src/scss/utils';
+
+$month-navigator-width: 80px;
+
+:host {
+  font-size: utils.font-size('n');
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  user-select: none;
+  margin-bottom: utils.size('xxs');
+}
+
+th,
+td {
+  text-align: center;
+  padding: 0;
+
+  &:first-child {
+    padding-left: utils.size('xxs');
+  }
+
+  &:last-child {
+    padding-right: utils.size('xxs');
+  }
+}
+
+th {
+  height: 50px;
+  border-bottom: 1px solid utils.get-color('background-color');
+}
+
+.header,
+th,
+td {
+  background-color: transparent;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: utils.size('xxs');
+  margin-bottom: 0;
+}
+
+.month-navigator {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.month-and-year {
+  user-select: none;
+  font-weight: utils.font-weight('bold');
+
+  .month {
+    margin-right: utils.size('xxs');
+  }
+}
+
+:host(.has-year-navigator) {
+  .month-navigator {
+    flex-grow: 0;
+  }
+
+  .month-and-year {
+    width: $month-navigator-width;
+    margin: 0 utils.size('xxs');
+    text-align: center;
+  }
+
+  .month {
+    margin-right: 0;
+  }
+}
+
+.day {
+  $day-width: utils.size('xl');
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $day-width * 0.5;
+  min-width: $day-width;
+  min-height: $day-width;
+  width: $day-width;
+  height: $day-width;
+  margin: utils.size('xxxs') 0;
+  font-size: utils.font-size('n');
+
+  &:focus {
+    // In narrow viewports where buttons sit side-by-side, ensure focus ring is on top of adjacent buttons.
+    z-index: utils.z('default');
+  }
+}
+
+button[aria-disabled='true'] {
+  // Hardcoded color because we don't want it to be part of a shared color palette
+  color: #b4b4b4;
+}
+
+.day.selectable:not(.current-month, .selected) {
+  color: #{utils.get-text-color('semi-dark')};
+}
+
+.day.today {
+  color: utils.get-color('medium-contrast');
+  background-color: utils.get-color('medium');
+}
+
+.day.selected {
+  color: utils.get-color('black-contrast');
+  background-color: utils.get-color('black');
+}
+
+.visually-hidden {
+  position: absolute;
+  scale: 0;
+}

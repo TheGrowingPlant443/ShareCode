@@ -1,0 +1,73 @@
+@use '@kirbydesign/core/src/scss/utils';
+
+:host {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: utils.size('s');
+
+  > * {
+    margin-right: utils.size('s');
+  }
+
+  &.wrap {
+    flex-wrap: wrap;
+
+    > * {
+      margin-bottom: utils.size('s');
+    }
+  }
+
+  &.align-top {
+    align-items: flex-start;
+  }
+}
+
+kirby-avatar {
+  position: relative;
+}
+
+kirby-avatar[title] {
+  margin-bottom: utils.size('s');
+
+  &::before {
+    content: '';
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(100%);
+    font-size: utils.font-size('xs');
+    text-align: center;
+  }
+
+  &[title='Overlay']::before {
+    content: 'Overlay';
+  }
+
+  &[title='Shadow']::before {
+    content: 'Shadow';
+  }
+
+  &[title='Stroke']::before {
+    content: 'Stroke';
+  }
+
+  &[title='light (default)']::before {
+    content: '(default)';
+  }
+
+  &[title='xs']::before {
+    content: 'xs';
+  }
+
+  &[title='sm']::before {
+    content: 'sm';
+  }
+
+  &[title='md']::before {
+    content: 'md';
+  }
+
+  &[title='lg']::before {
+    content: 'lg';
+  }
+}

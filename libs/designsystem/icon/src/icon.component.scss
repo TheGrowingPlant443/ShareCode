@@ -1,0 +1,54 @@
+@use '@kirbydesign/core/src/scss/utils';
+
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--kirby-icon-font-size, utils.icon-font-size('sm'));
+  margin-left: var(--kirby-icon-margin-left, unset);
+  margin-right: var(--kirby-icon-margin-right, unset);
+
+  svg path {
+    fill: currentcolor;
+    stroke: currentcolor;
+  }
+}
+
+:host(.xs) {
+  --kirby-icon-font-size: #{utils.icon-font-size('xs')};
+}
+
+:host(.sm) {
+  --kirby-icon-font-size: #{utils.icon-font-size('sm')};
+}
+
+:host(.md) {
+  --kirby-icon-font-size: #{utils.icon-font-size('md')};
+}
+
+:host(.lg) {
+  --kirby-icon-font-size: #{utils.icon-font-size('lg')};
+}
+
+@each $color-name, $color-value in utils.$main-colors {
+  :host(.#{$color-name}) {
+    color: utils.get-color($color-name);
+  }
+}
+
+:host-context(kirby-item) {
+  &[slot='start'] {
+    margin-inline-end: utils.size('xxs');
+  }
+
+  &[slot='end'] {
+    margin-inline-start: utils.size('xxs');
+  }
+}
+
+// Clicking a kirby-icon inside ion-tab-button on Android in Chrome WebView (Capacitor)
+// sometimes causes the tab-button to persist its :active pseudo-class
+// until clicked again. Therefore, disable pointer-events when inside tab button.
+:host-context(ion-tab-button) {
+  pointer-events: none;
+}

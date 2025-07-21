@@ -1,0 +1,16 @@
+@use '@kirbydesign/core/src/scss/utils';
+@use '../showcase.shared';
+
+h4 {
+  padding-top: utils.size('s');
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: utils.size('s');
+
+  @include utils.media('>=medium') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

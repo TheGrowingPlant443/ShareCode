@@ -1,0 +1,7 @@
+.grid {
+  padding-top: 35px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 237px);
+  gap: 35px 24px;
+  justify-content: space-around;
+}

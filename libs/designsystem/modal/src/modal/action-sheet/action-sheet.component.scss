@@ -1,0 +1,66 @@
+@use '@kirbydesign/core/src/scss/interaction-state';
+@use '@kirbydesign/core/src/scss/utils';
+
+$margin-horizontal: utils.size('l');
+$margin-horizontal-narrow: utils.size('s');
+$max-width: 375px;
+
+:host {
+  --kirby-internal-margin-horizontal-default: #{$margin-horizontal};
+  @include utils.media('<=xsmall') {
+    --kirby-internal-margin-horizontal-default: #{$margin-horizontal-narrow};
+  }
+
+  // Wrap declarations to avoid mixing with nested rules.
+  // See: https://sass-lang.com/documentation/breaking-changes/mixed-decls/
+  /* stylelint-disable no-duplicate-selectors */
+  & {
+    --kirby-internal-margin-horizontal-total: calc(
+      2 *
+        var(--kirby-action-sheet-margin-horizontal, var(--kirby-internal-margin-horizontal-default))
+    );
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0 auto;
+    width: calc(100vw - var(--kirby-internal-margin-horizontal-total));
+    max-width: calc(#{$max-width} - var(--kirby-internal-margin-horizontal-total));
+  }
+  /* stylelint-enable no-duplicate-selectors */
+
+  button[kirby-button].no-decoration {
+    @include interaction-state.apply-focus-visible-background;
+  }
+}
+
+kirby-card {
+  align-self: stretch;
+  pointer-events: auto;
+  box-shadow: utils.get-elevation(8);
+
+  button[kirby-button] {
+    margin: 0;
+    border-radius: 0;
+
+    &:not(:focus) {
+      border-top: 1px solid utils.get-color('background-color');
+    }
+  }
+}
+
+.cancel-btn {
+  @include interaction-state.apply-focus-visible($shadow: utils.get-elevation(8));
+
+  // Wrap declarations to avoid mixing with nested rules.
+  // See: https://sass-lang.com/documentation/breaking-changes/mixed-decls/
+  /* stylelint-disable no-duplicate-selectors */
+  & {
+    font-weight: utils.font-weight('bold');
+    margin-top: utils.size('s');
+    margin-bottom: utils.size('m');
+    pointer-events: auto;
+  }
+  /* stylelint-enable no-duplicate-selectors */
+}

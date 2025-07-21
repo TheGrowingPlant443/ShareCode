@@ -1,0 +1,12 @@
+@use '@kirbydesign/core/src/scss/utils';
+
+:host {
+  grid-area: footer;
+  background-color: utils.get-color('white');
+  text-align: center;
+  padding: utils.size('xl') 0;
+
+  p {
+    margin: 0;
+  }
+}

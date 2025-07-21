@@ -1,0 +1,89 @@
+<div class="example">
+  <p>
+    Toggle buttons allow users to switch between two states, such as on/off or
+    activated/deactivated. They are commonly used in settings and preferences.
+  </p>
+
+  <kirby-divider [hasMargin]="true"></kirby-divider>
+
+  <h2>Icon Only & Attention Level</h2>
+  <p>
+    A toggle button wraps two kirby-buttons, one marked with the
+    <code>checked</code>
+    attribute and one with
+    <code>unchecked</code>
+    . The
+    <code>[checked]="true"</code>
+    property of the toggle button element itself can be used to set the initial state of the toggle
+    button.
+  </p>
+  <cookbook-example-viewer [html]="toggleButtonDefaultExample.template">
+    <cookbook-toggle-button-default #toggleButtonDefaultExample></cookbook-toggle-button-default>
+  </cookbook-example-viewer>
+
+  <h2>Disabled</h2>
+  <p>Each of the nested buttons can be disabled and will then not toggle the state.</p>
+
+  <cookbook-example-viewer [html]="toggleButtonDisabledExample.template">
+    <cookbook-toggle-button-disabled #toggleButtonDisabledExample></cookbook-toggle-button-disabled>
+  </cookbook-example-viewer>
+
+  <p>
+    In the example above
+    <code>aria-disabled</code>
+    is used in place of the disabled attribute to ensure that the element is still focusable by
+    keyboard and discoverable by assistive technology. Read more about accessible disabled buttons
+    in
+    <a [routerLink]="'../button'">the button docs</a>
+    .
+  </p>
+
+  <h2>Theme Color</h2>
+  <p>
+    In contrast to regular buttons, buttons inside a toggle button accept the
+    <code>themeColor</code>
+    property for using the success, warning, and danger color palette.
+  </p>
+  <cookbook-example-viewer [html]="toggleButtonThemeColorExample.template">
+    <cookbook-toggle-button-theme-color
+      #toggleButtonThemeColorExample
+    ></cookbook-toggle-button-theme-color>
+  </cookbook-example-viewer>
+
+  <h2>Angular Forms</h2>
+  <p>
+    The toggle button can be used directly in
+    <a href="https://angular.dev/guide/forms/template-driven-forms" target="_blank">
+      template driven
+    </a>
+    and
+    <a href="https://angular.dev/guide/forms/reactive-forms" target="_blank">reactive forms</a>
+    . To use toggle button in a reactive form, bind your form control to
+    <code>&lt;kirby-toggle-button&gt;</code>
+    with simple data binding:
+  </p>
+  <!-- prettier-ignore -->
+  <cookbook-code-viewer language="html" [inlineLabel]="true">&lt;kirby-toggle-button [formControl]="yourFormControl"&gt; 
+// or simply:
+&lt;kirby-toggle-button formControlName="yourFormControlName"&gt;
+</cookbook-code-viewer>
+  <cookbook-example-viewer
+    [html]="toggleButtonReactiveFormsExample.template"
+    [ts]="toggleButtonReactiveFormsExample.codeSnippet"
+  >
+    <cookbook-toggle-button-reactive-forms-example
+      #toggleButtonReactiveFormsExample
+    ></cookbook-toggle-button-reactive-forms-example>
+  </cookbook-example-viewer>
+
+  <h2>API</h2>
+  <h3>Toggle Button properties</h3>
+  <cookbook-api-description-properties
+    [properties]="properties"
+  ></cookbook-api-description-properties>
+
+  <h3>Special Button properties</h3>
+  <cookbook-api-description-properties
+    [properties]="buttonProperties"
+  ></cookbook-api-description-properties>
+</div>

@@ -1,0 +1,12 @@
+/.github/
+libs/designsystem/header/src/header.component.html
+/libs/core/dist/**
+/libs/core/loader/**
+/libs/core/component-docs.d.ts
+/libs/core/component-docs.json
+/libs/core/src/components.d.ts
+/libs/**/readme.md
+/node_modules/
+
+/.nx/cache
+.angular

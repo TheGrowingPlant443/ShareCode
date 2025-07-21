@@ -1,0 +1,75 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled designsystem library output
+**/dist
+/tmp
+/out-tsc
+/dist-lib
+/test-reports
+**/helpers/**/*.styles.ts
+
+# compiled core library output
+/libs/core/loader
+/libs/core/dist/
+/libs/core/custom-elements.d.ts
+/libs/core/custom-elements.json
+/libs/core/src/components.d.ts
+/libs/core/src/scss/themes/design-tokens.css
+
+# dependencies
+**/node_modules/
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.angular/cache
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+*.bak
+.stencil/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+scripts/manifest.plist
+scripts/install-ipa.html
+
+# tools (tslint, sass-to-ts etc.)
+/tools/tslint-rules/dist
+/tools/sass-to-ts/dist
+/tools/generate-mocks/dist
+
+.angular
+.nx
+
+# Storybook
+storybook-static
+**/documentation.json
+
+# Chromatic
+# See https://www.chromatic.com/docs/storybook/setup/#setup-gitignore-to-ignore-certain-files-in-your-git-repository
+build-storybook.log
+chromatic.log
+chromatic-build-*.xml
+chromatic-diagnostics.json

@@ -1,0 +1,69 @@
+@use 'sass:map';
+@use '@kirbydesign/core/src/scss/utils';
+
+$height-measure-width: 80px;
+$default-size: map.get(utils.$checkbox-radio-sizes, 'md');
+
+kirby-checkbox,
+kirby-radio {
+  margin-bottom: utils.size('xxs');
+  background-color: utils.get-color('semi-light');
+  position: relative;
+}
+
+/* height measure */
+kirby-checkbox::before,
+kirby-checkbox::after,
+kirby-radio::before,
+kirby-radio::after {
+  height: 100%;
+  border: 1px solid utils.get-color('danger');
+  position: absolute;
+  right: 0;
+}
+
+/* horizontal measure */
+kirby-checkbox::before,
+kirby-radio::before {
+  content: '';
+  border-left: 0;
+  border-right: 0;
+  width: utils.size('xxs') + 1px;
+}
+
+/* vertical measure */
+kirby-checkbox::after,
+kirby-radio::after {
+  content: 'md: #{ $default-size }';
+  border-left: 0;
+  border-top: 0;
+  border-bottom: 0;
+  line-height: $default-size;
+  font-size: utils.font-size('xs');
+  color: utils.get-color('danger');
+  padding-right: utils.size('xxs');
+  margin-right: utils.size('xxs') * 0.5;
+  vertical-align: center;
+}
+
+@each $size, $height in utils.$checkbox-radio-sizes {
+  kirby-radio.#{$size}::after {
+    content: '#{$size}: #{$height}';
+    line-height: $height;
+  }
+}
+
+@each $size, $properties in utils.$checkbox-sizes {
+  $line-height: map.get($properties, line-height);
+  kirby-checkbox.#{$size}::after {
+    content: '#{$size}: #{$line-height}';
+    line-height: $line-height;
+  }
+}
+
+/* stylelint-disable selector-pseudo-element-no-unknown */
+kirby-checkbox ::ng-deep ion-checkbox,
+kirby-radio ::ng-deep ion-radio {
+  background-color: #f7e0f0;
+  margin-right: $height-measure-width; // Allow room for height measure info
+}

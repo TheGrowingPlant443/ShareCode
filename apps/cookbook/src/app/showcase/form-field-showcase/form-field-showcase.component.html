@@ -1,0 +1,283 @@
+<h2>Input</h2>
+<cookbook-form-field-example-configuration
+  [(size)]="size"
+></cookbook-form-field-example-configuration>
+<h3>Default</h3>
+<cookbook-example-viewer [html]="inputDefaultExample.template">
+  <cookbook-form-field-input-example
+    [size]="size"
+    #inputDefaultExample
+  ></cookbook-form-field-input-example>
+</cookbook-example-viewer>
+
+<h3>Color</h3>
+<cookbook-example-viewer [html]="inputColorExample.template">
+  <cookbook-form-field-input-color-example
+    #inputColorExample
+  ></cookbook-form-field-input-color-example>
+</cookbook-example-viewer>
+
+<h3>Label</h3>
+<cookbook-example-viewer [html]="inputLabelExample.template">
+  <cookbook-form-field-input-label-example
+    [size]="size"
+    #inputLabelExample
+  ></cookbook-form-field-input-label-example>
+</cookbook-example-viewer>
+
+<h3>Label & Message</h3>
+<cookbook-example-viewer [html]="inputLabelMessageExample.template">
+  <cookbook-form-field-input-label-message-example
+    [size]="size"
+    #inputLabelMessageExample
+  ></cookbook-form-field-input-label-message-example>
+</cookbook-example-viewer>
+
+<h3>Affix</h3>
+<p>
+  <strong>Please note:</strong>
+  Affix functionality is
+  <em>only</em>
+  intended for use with kirby-input. Date mask input currently does not support prefixed content.
+</p>
+<cookbook-example-viewer [html]="affixExample.template">
+  <cookbook-form-field-input-affix-example
+    [size]="size"
+    #affixExample
+  ></cookbook-form-field-input-affix-example>
+</cookbook-example-viewer>
+
+<h3>Character counter</h3>
+<cookbook-example-viewer [html]="inputCounterExample.template">
+  <cookbook-form-field-input-counter-example
+    [size]="size"
+    #inputCounterExample
+  ></cookbook-form-field-input-counter-example>
+</cookbook-example-viewer>
+
+<h3>Character counter with form</h3>
+<cookbook-example-viewer [html]="inputCounterFormExample.template">
+  <cookbook-form-field-input-counter-form-example
+    [size]="size"
+    #inputCounterFormExample
+  ></cookbook-form-field-input-counter-form-example>
+</cookbook-example-viewer>
+
+<h3>Numeric</h3>
+<p>
+  The numeric input includes built in validation for rejecting non-numerical user input. As an
+  example, Chrome completely restricts the user to only enter numbers while Safari og Firefox allows
+  the user to enter any character, but will validate before the form is submitted.
+</p>
+<p>When using a numeric field from a device, it will show the numeric keyboard to the user.</p>
+<cookbook-example-viewer [html]="inputNumericExample.template">
+  <cookbook-form-field-input-numeric-example
+    [size]="size"
+    #inputNumericExample
+  ></cookbook-form-field-input-numeric-example>
+</cookbook-example-viewer>
+
+<h4>Decimal mask</h4>
+<p>
+  Restricts the input to numbers only. It ensures correct keyboard, adds grouping separators based
+  on locale, and will default to allow two fractional digits. These can be configured by setting
+  <code>[precision]="amount of digits"</code>
+  .
+</p>
+<p>
+  Input can be restricted to a specified range with
+  <code>[min]</code>
+  and
+  <code>[max]</code>
+</p>
+<p>
+  As default, negative numbers are disallowed, however, they can be allowed by setting either
+  <code>[allowMinus]="true"</code>
+  or entering a negative number to [min]
+  <code>[min]="negative number"</code>
+</p>
+<p>
+  Group separators can be disabled with
+  <code>[disableGroupSeperator]</code>
+  .
+</p>
+<p>
+  By default the inputted numbers are right-aligned, but can be left-aligned by setting
+  <code>alignment="left"</code>
+  .
+</p>
+
+<cookbook-example-viewer [html]="inputDecimalMaskExample.template">
+  <cookbook-form-field-input-decimal-mask-example
+    [size]="size"
+    #inputDecimalMaskExample
+  ></cookbook-form-field-input-decimal-mask-example>
+</cookbook-example-viewer>
+<p>
+  <em>
+    <strong>*Please note:</strong>
+    using
+    <code>maxlength</code>
+    will disallow fractional digits.
+  </em>
+</p>
+
+<h3>Date</h3>
+<cookbook-example-viewer [html]="inputDateExample.template">
+  <cookbook-form-field-input-date-example
+    [size]="size"
+    #inputDateExample
+  ></cookbook-form-field-input-date-example>
+</cookbook-example-viewer>
+
+<p>The value supplied to the input should be formatted according to the current locale.</p>
+
+<p>
+  <em>
+    <strong>*Please note:</strong>
+    The placeholder is based on
+    <code>LOCALE_ID</code>
+    . E.g. when
+    <code>DA</code>
+    the placeholder will be
+    <code>dd.mm.åååå</code>
+  </em>
+</p>
+
+<h4>🧪 Experimental: Standard HTML date input (native date picker)</h4>
+<p>
+  <strong>Please note:</strong>
+  The input UI generally varies between browsers and between devices (
+  <a
+    href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date"
+    target="_blank"
+    rel="noopener"
+  >
+    MDN
+  </a>
+  ). This may not adhere to the visual preferences for your project.
+</p>
+<p>
+  However, a platform native date picker has several advantages out of the box, such as being
+  accessible and having built-in localization.
+</p>
+<cookbook-example-viewer [html]="inputDateNativeExample.template">
+  <cookbook-form-field-input-date-native-example
+    [size]="size"
+    #inputDateNativeExample
+  ></cookbook-form-field-input-date-native-example>
+</cookbook-example-viewer>
+<p>
+  When opting into the native datepicker, the value should be in the
+  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Date_and_time_formats#date_strings">
+    Date strings format
+  </a>
+  .
+</p>
+<h3>Disabled</h3>
+<cookbook-example-viewer [html]="inputDisabledExample.template">
+  <cookbook-form-field-input-disabled-example
+    [size]="size"
+    #inputDisabledExample
+  ></cookbook-form-field-input-disabled-example>
+</cookbook-example-viewer>
+
+<h3>Error</h3>
+<cookbook-example-viewer [html]="inputErrorExample.template">
+  <cookbook-form-field-input-error-example
+    [size]="size"
+    #inputErrorExample
+  ></cookbook-form-field-input-error-example>
+</cookbook-example-viewer>
+
+<h3>Borderless</h3>
+<cookbook-example-viewer [html]="inputBorderlessExample.template">
+  <cookbook-form-field-input-borderless-example
+    [size]="size"
+    #inputBorderlessExample
+  ></cookbook-form-field-input-borderless-example>
+</cookbook-example-viewer>
+
+<h3>Focus programmatically</h3>
+<cookbook-example-viewer [html]="focusExample.template" [ts]="focusExample.codeSnippet">
+  <cookbook-form-field-focus-example
+    [size]="size"
+    #focusExample
+  ></cookbook-form-field-focus-example>
+</cookbook-example-viewer>
+
+<h2>Textarea</h2>
+
+<h3>Default</h3>
+<cookbook-example-viewer [html]="textareaDefaultExample.template">
+  <cookbook-form-field-textarea-example
+    #textareaDefaultExample
+  ></cookbook-form-field-textarea-example>
+</cookbook-example-viewer>
+
+<h3>Label</h3>
+<cookbook-example-viewer [html]="textareaLabelExample.template">
+  <cookbook-form-field-textarea-label-example
+    #textareaLabelExample
+  ></cookbook-form-field-textarea-label-example>
+</cookbook-example-viewer>
+
+<h3>Character counter</h3>
+<cookbook-example-viewer [html]="textareaCounterExample.template">
+  <cookbook-form-field-textarea-counter-example
+    #textareaCounterExample
+  ></cookbook-form-field-textarea-counter-example>
+</cookbook-example-viewer>
+
+<h3>Character counter with form</h3>
+<cookbook-example-viewer [html]="textareaCounterFormExample.template">
+  <cookbook-form-field-textarea-counter-form-example
+    #textareaCounterFormExample
+  ></cookbook-form-field-textarea-counter-form-example>
+</cookbook-example-viewer>
+
+<h2>Form Field</h2>
+<h4>Properties:</h4>
+<cookbook-api-description-properties
+  [properties]="formFieldProperties"
+></cookbook-api-description-properties>
+<h4>Methods:</h4>
+<cookbook-api-description-methods [methods]="formFieldMethods"></cookbook-api-description-methods>
+
+<h2>Input & Textarea: Shared Properties & Events</h2>
+<h4>Properties:</h4>
+<cookbook-api-description-properties
+  [properties]="sharedProperties"
+></cookbook-api-description-properties>
+<h4>Events:</h4>
+<cookbook-api-description-events [events]="sharedEvents"></cookbook-api-description-events>
+
+<h2>Input: Specific properties</h2>
+<h4>Properties:</h4>
+<cookbook-api-description-properties
+  [properties]="inputProperties"
+></cookbook-api-description-properties>
+
+<h2>Decimal mask</h2>
+<h4>Properties:</h4>
+<cookbook-api-description-properties
+  [properties]="decimalMaskProperties"
+></cookbook-api-description-properties>
+
+<h2>Date mask</h2>
+<h4>Properties:</h4>
+<cookbook-api-description-properties
+  [properties]="dateMaskProperties"
+></cookbook-api-description-properties>
+
+<h2>Textarea: Specific properties</h2>
+<h4>Properties:</h4>
+<cookbook-api-description-properties
+  [properties]="textareaProperties"
+></cookbook-api-description-properties>
+
+<h2>Input Counter</h2>
+<h4>Properties:</h4>
+<cookbook-api-description-properties
+  [properties]="counterProperties"
+></cookbook-api-description-properties>

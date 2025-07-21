@@ -1,0 +1,197 @@
+@use 'sass:color';
+@use 'sass:map';
+@use '@kirbydesign/core/src/scss/interaction-state';
+@use '@kirbydesign/core/src/scss/utils';
+
+$radio-icon-size: utils.size('m');
+$radio-icon-mark-size: 12px;
+$spacing-to-edge: map.get(utils.$checkbox-radio-spacing, 'to-edge');
+$spacing-to-label: map.get(utils.$checkbox-radio-spacing, 'to-label');
+
+@function get-vertical-padding($target-height) {
+  @return ($target-height - $radio-icon-size) * 0.5;
+}
+
+:host {
+  display: flex;
+
+  &[disabled] {
+    color: #{utils.get-text-color('semi-dark')};
+
+    ion-radio {
+      --color: #{utils.get-color('medium')};
+      --color-checked: #{utils.get-color('medium')};
+
+      &::part(container) {
+        background-color: utils.get-color('semi-light');
+      }
+
+      &::part(label-text-wrapper) {
+        opacity: 1; // Reset Ionic disabled style
+      }
+
+      &::part(native-wrapper) {
+        opacity: 1; // Reset Ionic disabled style
+      }
+    }
+  }
+
+  &:has(ion-radio.in-item.radio-justify-space-between) {
+    width: 100%;
+  }
+
+  &.has-hidden-label {
+    &:has(ion-radio.in-item) {
+      // Reset position when radio is in item and has hidden label
+      // to ensure that it fills out its parent container
+      // so the entire item becomes clickable
+      position: initial;
+
+      ion-radio {
+        position: initial;
+
+        &::part(label) {
+          position: initial;
+        }
+
+        &.radio-label-placement-start::part(label-text-wrapper),
+        &.radio-label-placement-end::part(label-text-wrapper) {
+          margin-inline: 0;
+        }
+      }
+    }
+
+    &[slot='end'] {
+      ion-radio {
+        margin-inline-start: $spacing-to-label;
+      }
+    }
+
+    .hidden-label {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+    }
+  }
+}
+
+@each $size, $height in utils.$checkbox-radio-sizes {
+  :host.#{$size} {
+    $vertical-padding: get-vertical-padding($height);
+
+    ion-radio:not(.in-item)::part(label) {
+      padding-block: $vertical-padding;
+    }
+  }
+}
+
+ion-radio {
+  @include interaction-state.apply-focus-part($part: 'container');
+
+  // Wrap declarations to avoid mixing with nested rules.
+  // See: https://sass-lang.com/documentation/breaking-changes/mixed-decls/
+  /* stylelint-disable no-duplicate-selectors */
+  & {
+    box-sizing: border-box; // Ensure padding is not added to radio width/height
+
+    --border-width: 1px;
+    --color: #{utils.get-color('semi-dark')};
+    --color-checked: #{utils.get-color('success')};
+  }
+  /* stylelint-enable no-duplicate-selectors */
+
+  @include interaction-state.apply-hover {
+    &::part(container) {
+      background-color: interaction-state.get-state-color('white', 'xxs');
+    }
+  }
+  @include interaction-state.apply-active {
+    --color-checked: #{interaction-state.get-state-color('success')};
+
+    &::part(container) {
+      background-color: interaction-state.get-state-color('white', 'xs');
+    }
+  }
+
+  &::part(container) {
+    transition: interaction-state.transition();
+    transition-property: background-color;
+    background-color: utils.get-color('white');
+    margin: utils.size('xxxxs');
+  }
+
+  &::part(mark) {
+    width: $radio-icon-mark-size;
+    height: $radio-icon-mark-size;
+  }
+
+  &::part(label) {
+    align-items: start;
+    padding-inline: $spacing-to-edge $spacing-to-label;
+    line-height: utils.line-height('n');
+  }
+
+  &::part(label-text-wrapper) {
+    margin-inline: $spacing-to-label 0;
+    white-space: pre-line;
+  }
+
+  // Overrides for kirby-radio inside kirby-item
+  &.in-item {
+    &::part(label) {
+      align-items: center;
+      padding-inline: 0;
+    }
+
+    &::part(label-text-wrapper) {
+      margin-block: 0;
+    }
+
+    &.radio-label-placement-start {
+      &::part(label-text-wrapper) {
+        margin-inline: 0 utils.size('xxs');
+      }
+    }
+
+    &.radio-label-placement-end {
+      &::part(label-text-wrapper) {
+        margin-inline: utils.size('xxs') 0;
+      }
+    }
+  }
+
+  :host-context(kirby-radio-group.error),
+  :host-context(kirby-radio-group.ng-touched.ng-invalid) {
+    ion-radio,
+    ion-radio:active {
+      --color: #{utils.get-color('danger')};
+    }
+  }
+
+  &.radio-checked {
+    &:not(:focus, .radio-disabled) {
+      &::part(container) {
+        box-shadow: utils.get-elevation(4);
+      }
+    }
+
+    &:not(.radio-disabled) {
+      &::part(container) {
+        border-color: var(--kirby-semi-dark);
+      }
+    }
+  }
+}
+
+:host-context(kirby-item) {
+  z-index: utils.z('default'); // Makes whole kirby-item clickable above item-inner.
+
+  ion-radio {
+    margin: 0; // Reset Ionic in-item margins
+  }
+
+  &[slot='start'] {
+    margin-block: 0; // Reset Ionic Item margin applided to slot=start
+    margin-inline-end: $spacing-to-label;
+  }
+}

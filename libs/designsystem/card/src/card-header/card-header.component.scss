@@ -1,0 +1,70 @@
+@use 'sass:meta';
+@use '@kirbydesign/core/src/scss/utils';
+
+:host {
+  display: block;
+  border-top-left-radius: utils.border-radius('n');
+  border-top-right-radius: utils.border-radius('n');
+  text-align: center;
+  padding: 0;
+  color: var(--kirby-card-header-color);
+  background-color: var(--kirby-card-header-background-color);
+
+  &.has-padding {
+    padding: var(--kirby-internal-card-header-padding, utils.size('s'));
+  }
+}
+
+.title {
+  margin-bottom: var(--kirby-internal-card-header-margin-bottom, utils.size('xxs'));
+  line-height: var(--kirby-internal-card-header-line-height, utils.line-height('l'));
+
+  &.bold {
+    font-weight: utils.font-weight('bold');
+  }
+}
+
+.subtitle {
+  font-size: utils.font-size('s');
+  margin-bottom: 0;
+}
+
+// Flagged card headers
+
+// key = level, value = decoration color name + shade
+$_card-header-notification-colors-map: (
+  'success': (
+    'green',
+    30,
+  ),
+  'warning': (
+    'yellow',
+    30,
+  ),
+  'danger': (
+    'red',
+    30,
+  ),
+  'info': 'semi-light',
+);
+
+@each $name, $variant_shade in $_card-header-notification-colors-map {
+  :host(.#{$name}) {
+    @if meta.type_of($variant_shade) == list {
+      --kirby-card-header-background-color: #{utils.get-decoration-color($variant_shade...)};
+    } @else {
+      --kirby-card-header-background-color: #{utils.get-color($variant_shade)};
+    }
+
+    --kirby-card-header-color: #{utils.get-color('black')};
+  }
+}
+
+:host(.flagged) {
+  --kirby-internal-card-header-padding: #{utils.size('xxxxs')} #{utils.size('xxs')};
+
+  p {
+    --kirby-internal-card-header-line-height: #{utils.line-height('n')};
+    --kirby-internal-card-header-margin-bottom: 0px;
+  }
+}

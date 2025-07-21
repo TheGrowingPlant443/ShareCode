@@ -1,0 +1,67 @@
+<button
+  kirby-button
+  [size]="size"
+  [attentionLevel]="attentionLevel"
+  tabindex="-1"
+  (click)="onToggle($event)"
+  (mousedown)="onButtonMouseEvent($event)"
+  [disabled]="disabled"
+  type="button"
+>
+  <span class="text">{{ selectedText || placeholder }}</span>
+  <kirby-icon [name]="isOpen ? 'arrow-up' : 'arrow-down'"></kirby-icon>
+</button>
+<kirby-label *ngIf="hasError && errorMessage" class="error-message" themeColor="danger" size="xs">
+  {{ errorMessage }}
+</kirby-label>
+
+<ng-container *ngTemplateOutlet="usePopover ? popoverTemplate : itemWrapperTemplate"></ng-container>
+
+<ng-template #popoverTemplate>
+  <kirby-popover
+    [target]="buttonElement"
+    [popout]="popout"
+    (click)="_onPopoverClick()"
+    (willHide)="_onPopoverWillHide()"
+  >
+    <ng-container *ngTemplateOutlet="itemWrapperTemplate"></ng-container>
+  </kirby-popover>
+</ng-template>
+
+<ng-template #itemWrapperTemplate>
+  <kirby-card>
+    <ng-container *ngFor="let item of items; let i = index">
+      <ng-container
+        *ngTemplateOutlet="
+          itemTemplate || defaultItemTemplate;
+          context: {
+            $implicit: item,
+            selected: i === selectedIndex,
+            focused: i === focusedIndex,
+            index: i,
+          }
+        "
+      ></ng-container>
+    </ng-container>
+  </kirby-card>
+</ng-template>
+
+<ng-template
+  #defaultItemTemplate
+  let-item
+  let-selected="selected"
+  let-index="index"
+  let-focused="focused"
+>
+  <kirby-item
+    [selectable]="true"
+    [selected]="selected"
+    (click)="onItemSelect(index)"
+    [class.focused]="focused"
+    role="option"
+  >
+    <!-- Tabindex fixes issue with popover dropdown not working in safari -->
+    <p class="kirby-item-title" tabindex="0">{{ getTextFromItem(item) }}</p>
+    <kirby-icon *ngIf="selected" name="checkmark-selected" slot="end"></kirby-icon>
+  </kirby-item>
+</ng-template>

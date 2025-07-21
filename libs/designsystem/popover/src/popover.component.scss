@@ -1,0 +1,23 @@
+@use '@kirbydesign/core/src/scss/utils';
+
+:host {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: utils.z('popover');
+}
+
+:host(.is-opening) {
+  display: block;
+  visibility: hidden;
+}
+
+:host(.is-open) {
+  display: block;
+}
+
+.wrapper {
+  position: fixed;
+  margin-top: utils.size('xxxs');
+  margin-bottom: utils.size('xxxs');
+}

@@ -1,0 +1,50 @@
+@use '@kirbydesign/core/src/scss/utils';
+
+.message-container {
+  max-width: 330px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.icon-outline {
+  $icon-size: utils.size('xxl') * 2;
+
+  width: $icon-size;
+  height: $icon-size;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: utils.size('m');
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: utils.size('xxxs') solid utils.get-color('medium');
+  border-radius: utils.border-radius('circle');
+}
+
+kirby-icon {
+  color: utils.get-color('medium');
+}
+
+.title {
+  margin-bottom: utils.size('xxs');
+}
+
+p.subtitle {
+  margin-bottom: utils.size('m');
+  white-space: pre-wrap;
+}
+
+@each $color-name, $color-value in utils.$main-colors {
+  :host(.#{$color-name}) {
+    .icon-outline {
+      border-color: #{utils.get-color($color-name)};
+    }
+
+    kirby-icon {
+      color: #{utils.get-color($color-name)};
+    }
+  }
+}

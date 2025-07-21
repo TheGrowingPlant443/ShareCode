@@ -1,0 +1,81 @@
+@use '@kirbydesign/core/src/scss/utils';
+
+:host {
+  display: grid;
+  place-content: center;
+}
+
+kirby-card {
+  max-width: 500px;
+}
+
+kirby-flag {
+  float: inline-end;
+}
+
+.card-option-button-group {
+  display: flex;
+  justify-content: center;
+  gap: utils.size('xxs');
+  padding: utils.size('xxs');
+}
+
+.kirby-color-brightness-dark {
+  code {
+    background-color: utils.get-color('dark');
+    color: utils.get-color('dark-contrast');
+  }
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+$_card-header-notification-colors-map: (
+  'success': 'green',
+  'warning': 'yellow',
+  'danger': 'red',
+);
+$_card-colors: 'medium', 'secondary', 'tertiary', 'dark';
+
+button {
+  height: utils.$fat-finger-size;
+  width: utils.$fat-finger-size;
+  border: none;
+  border-radius: utils.border-radius('circle');
+  margin: 0;
+  color: utils.get-color('black');
+  cursor: pointer;
+
+  @each $name, $variant in $_card-header-notification-colors-map {
+    &.#{$name} {
+      background-color: utils.get-decoration-color($variant, 30);
+
+      &:hover {
+        background-color: utils.get-decoration-color($variant, 50);
+      }
+    }
+  }
+
+  &.info {
+    background-color: utils.get-color('semi-light');
+
+    &:hover {
+      background-color: var(--kirby-semi-light-shade);
+    }
+  }
+
+  @each $color in $_card-colors {
+    &.#{$color} {
+      background-color: utils.get-color($color);
+
+      &:hover {
+        background-color: var(--kirby-#{$color}-shade);
+      }
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}

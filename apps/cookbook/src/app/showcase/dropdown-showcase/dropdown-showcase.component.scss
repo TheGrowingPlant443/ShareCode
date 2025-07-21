@@ -1,0 +1,13 @@
+@use '@kirbydesign/core/src/scss/utils';
+
+h2:not(:first-child) {
+  margin-top: utils.size('l');
+}
+
+h3 {
+  border-bottom: 1px dotted utils.get-color('medium');
+}
+
+cookbook-example-viewer {
+  margin-bottom: utils.size('l');
+}

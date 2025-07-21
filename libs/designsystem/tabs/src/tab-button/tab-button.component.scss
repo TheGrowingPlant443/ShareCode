@@ -1,0 +1,102 @@
+@use 'sass:math';
+
+@use '@kirbydesign/core/src/scss/interaction-state';
+@use '@kirbydesign/core/src/scss/utils';
+
+:host {
+  // Ignore the tab-button elements box and replace with its content
+  display: contents;
+}
+
+ion-tab-button {
+  &.ion-focused {
+    @include interaction-state.apply-focus-visible-background {
+      --background: #{interaction-state.get-state-color('white', 'xxxs')};
+      --background-focused-opacity: 0;
+    }
+  }
+
+  @include interaction-state.apply-hover {
+    --background: #{interaction-state.get-state-color('white', 'xxxs')};
+  }
+
+  @include interaction-state.apply-active {
+    --background: #{interaction-state.get-state-color('white', 'xxs')};
+  }
+
+  // Wrap declarations to avoid mixing with nested rules.
+  // See: https://sass-lang.com/documentation/breaking-changes/mixed-decls/
+  /* stylelint-disable no-duplicate-selectors */
+  & {
+    transition: interaction-state.transition(background-color);
+    height: 100%;
+    flex: 1 1 0%;
+    max-width: 168px;
+    font-weight: utils.font-weight('medium');
+    font-size: utils.font-size('xs');
+    line-height: utils.line-height('xs');
+
+    --color: #{utils.get-text-color('semi-dark')};
+    --color-selected: #{utils.get-color('black')};
+    --padding-start: 0;
+    --padding-end: 0;
+
+    // Magic values here as we have no tokens that gives
+    // badge the correct position in relation to the tab icon
+    --kirby-badge-position: absolute;
+    --kirby-badge-top: 0.55em;
+    --kirby-badge-left: calc(50% + 0.4em);
+  }
+  /* stylelint-enable no-duplicate-selectors */
+
+  @include utils.slotted(kirby-badge) {
+    &.md {
+      // Magic values here as we have no tokens that gives
+      // badge the correct position in relation to the tab icon
+      --kirby-badge-top: 0.3em;
+      --kirby-badge-left: calc(50% + 0.2em);
+    }
+  }
+
+  @include utils.media('>=medium') {
+    flex: none;
+    flex-direction: row;
+    font-size: utils.font-size('s');
+    line-height: utils.line-height('s');
+
+    --padding-start: #{utils.size('m')};
+    --padding-end: #{utils.size('m')};
+
+    // Magic values here as we have no tokens that gives
+    // badge the correct position in relation to the tab icon
+    --kirby-badge-position: absolute; // Repeated for readability
+    --kirby-badge-top: calc(50% - 1.35em);
+    --kirby-badge-left: 1.6em;
+
+    @include utils.slotted(kirby-badge) {
+      &.md {
+        --kirby-badge-position: relative;
+        --kirby-badge-top: 0;
+        --kirby-badge-left: 0;
+
+        margin-left: utils.size('xxxxs');
+
+        // Using / for division outside of calc() is deprecated
+        // and will be removed in Dart Sass 2.0.0. Use math.div() instead.
+        // See: https://sass-lang.com/documentation/breaking-changes/slash-div/
+        margin-bottom: math.div(utils.size('xxxxs'), 2);
+      }
+    }
+
+    @include utils.slotted(kirby-icon) {
+      --kirby-icon-margin-right: #{utils.size('xxs')};
+    }
+  }
+
+  @include utils.media('>=large') {
+    @include utils.not-touch {
+      --padding-start: #{utils.size('xs')};
+      --padding-end: #{utils.size('xs')};
+    }
+  }
+}

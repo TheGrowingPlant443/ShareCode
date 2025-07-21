@@ -1,0 +1,30 @@
+<div class="example">
+  <p>
+    <em>
+      <strong>Please note:</strong>
+      The
+      <code>kirby-reorder-list</code>
+      component needs to be wrapped in a
+      <code><a routerLink="../page">kirby-page</a></code>
+      to function correctly.
+    </em>
+  </p>
+  <h2>Accessibility</h2>
+  <p>
+    When using a toggle as in the example below, set the
+    <code>aria-label</code>
+    property to inform screen reader users what the toggle is controlling.
+  </p>
+  <div class="example-wrapper">
+    <cookbook-code-viewer [html]="exampleHtml"></cookbook-code-viewer>
+    <cookbook-iphone src="/examples/reorder-list" showExternalLink="true"></cookbook-iphone>
+  </div>
+  <h2>Properties:</h2>
+  <cookbook-api-description-properties
+    [properties]="properties"
+  ></cookbook-api-description-properties>
+  <h2>Events:</h2>
+  <cookbook-api-description-events [events]="events"></cookbook-api-description-events>
+  <h2>Methods:</h2>
+  <cookbook-api-description-methods [methods]="methods"></cookbook-api-description-methods>
+</div>

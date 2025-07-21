@@ -1,0 +1,75 @@
+<div class="example">
+  <h2>Default</h2>
+  <cookbook-example-viewer [html]="defaultExample.template">
+    <cookbook-avatar-example-default #defaultExample></cookbook-avatar-example-default>
+  </cookbook-example-viewer>
+
+  <h2>Colors</h2>
+  <cookbook-example-viewer [html]="colorsExample.template">
+    <cookbook-avatar-example-colors #colorsExample></cookbook-avatar-example-colors>
+  </cookbook-example-viewer>
+
+  <h2>Avatar with text</h2>
+  <cookbook-example-viewer [html]="textExample.template">
+    <cookbook-avatar-example-text #textExample></cookbook-avatar-example-text>
+  </cookbook-example-viewer>
+
+  <h2>Avatar with icon</h2>
+  <cookbook-example-viewer [html]="iconExample.template">
+    <cookbook-avatar-example-icon #iconExample></cookbook-avatar-example-icon>
+  </cookbook-example-viewer>
+
+  <h2>Avatar with badge</h2>
+  <cookbook-example-viewer [html]="badgeExample.template">
+    <cookbook-avatar-example-badge #badgeExample></cookbook-avatar-example-badge>
+  </cookbook-example-viewer>
+
+  <h2>Avatar with image</h2>
+  <cookbook-example-viewer [html]="imageExample.template">
+    <cookbook-avatar-example-image #imageExample></cookbook-avatar-example-image>
+  </cookbook-example-viewer>
+  <h3>Sizes</h3>
+  <cookbook-example-viewer [html]="imageSizeExample.template">
+    <cookbook-avatar-example-image-size #imageSizeExample></cookbook-avatar-example-image-size>
+  </cookbook-example-viewer>
+
+  <h3>Lazy loaded image</h3>
+  <p>
+    If you want to defer the loading of the avatar image set
+    <code>imageLoading="lazy"</code>
+    .
+  </p>
+  <p>
+    <a
+      class="kirby-external-icon"
+      target="_blank"
+      href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#loading"
+    >
+      Read more about lazy loading images on MDN
+    </a>
+  </p>
+  <cookbook-example-viewer [html]="imageLazyLoadingExample.template">
+    <cookbook-avatar-example-image-loazy-loading
+      #imageLazyLoadingExample
+    ></cookbook-avatar-example-image-loazy-loading>
+  </cookbook-example-viewer>
+
+  <h3>Fallback image</h3>
+  <p>
+    The image avatar will emit an
+    <code>ErrorEvent</code>
+    if the image fails to load. This allows for falling back to a default avatar image or do some
+    other handling when the image cannot be loaded.
+  </p>
+
+  <cookbook-example-viewer [html]="imageErrorExample.template" [ts]="imageErrorExample.ts">
+    <cookbook-avatar-example-image-error #imageErrorExample></cookbook-avatar-example-image-error>
+  </cookbook-example-viewer>
+
+  <h2>Properties:</h2>
+  <cookbook-api-description-properties
+    [properties]="properties"
+  ></cookbook-api-description-properties>
+  <h2>Events:</h2>
+  <cookbook-api-description-events [events]="events"></cookbook-api-description-events>
+</div>

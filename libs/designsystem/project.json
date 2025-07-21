@@ -1,0 +1,76 @@
+{
+  "name": "designsystem",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/designsystem",
+  "prefix": "kirby",
+  "implicitDependencies": ["!cookbook"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "inputs": ["{projectRoot}/**", "!{projectRoot}/dist/**"],
+      "outputs": ["{projectRoot}/dist/"],
+      "dependsOn": ["^build"],
+      "options": {
+        "tsConfig": "libs/designsystem/tsconfig.lib.json",
+        "project": "libs/designsystem/ng-package.json"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/designsystem/test.ts",
+        "tsConfig": "libs/designsystem/tsconfig.spec.json",
+        "karmaConfig": "libs/designsystem/karma.conf.js",
+        "styles": ["libs/designsystem/testing/src/styles.scss"]
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/designsystem"]
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf libs/core/dist libs/designsystem/dist",
+          "nx build core --watch",
+          "wait-on libs/core/dist/index.js && nx build designsystem --watch",
+          "wait-on libs/designsystem/dist/package.json && nx serve cookbook"
+        ],
+        "parallel": true
+      }
+    },
+    "dev-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rm -rf libs/core/dist libs/designsystem/dist",
+          "nx build core --watch",
+          "wait-on libs/core/dist/index.js && nx build designsystem --watch",
+          "wait-on libs/designsystem/dist/package.json && nx storybook designsystem"
+        ],
+        "parallel": true
+      }
+    },
+    "storybook": {
+      "builder": "@storybook/angular:start-storybook",
+      "options": {
+        "configDir": "libs/designsystem/.storybook",
+        "port": 6006
+      }
+    },
+    "build-storybook": {
+      "builder": "@storybook/angular:build-storybook",
+      "options": {
+        "configDir": "libs/designsystem/.storybook",
+        "outputDir": "dist/storybook/designsystem",
+        "enableProdMode": false,
+        "styles": [
+          "libs/core/src/scss/_global-styles.scss",
+          "libs/designsystem/.storybook/styles.css"
+        ]
+      }
+    }
+  },
+  "generators": {
+    "@nx/angular:component": {}
+  }
+}

@@ -1,0 +1,103 @@
+@use '@kirbydesign/core/src/scss/interaction-state';
+@use '@kirbydesign/core/src/scss/utils';
+
+$tick-height: 6px;
+$tick-width: 6px;
+$knob-shadow: 0 5px 10px 0 rgb(28 28 28 / 30%), 0 0 5px 0 rgb(28 28 28 / 8%);
+
+:host {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+ion-range {
+  @include interaction-state.apply-focus-part($part: 'knob', $shadow: $knob-shadow);
+  @include interaction-state.apply-hover {
+    --knob-background: #{interaction-state.get-state-color('white', 'xxs')};
+  }
+  @include interaction-state.apply-active {
+    --knob-background: #{interaction-state.get-state-color('white', 's')};
+  }
+
+  // Wrap declarations to avoid mixing with nested rules.
+  // See: https://sass-lang.com/documentation/breaking-changes/mixed-decls/
+  /* stylelint-disable no-duplicate-selectors */
+  & {
+    --knob-background: #{utils.get-color('white')};
+    --knob-box-shadow: #{$knob-shadow};
+    --knob-size: 24px;
+    --pin-color: #{utils.get-text-color('black')};
+    --pin-background: #{utils.get-color('semi-light')};
+    --bar-background: #{utils.get-color('medium')};
+    --bar-background-active: #{utils.get-color('dark')};
+    --bar-border-radius: #{utils.size('xxxs')};
+    --bar-height: #{utils.size('xxxxs')};
+
+    flex: 1 1 100%;
+    padding: 0;
+  }
+  /* stylelint-enable no-duplicate-selectors */
+
+  &.range-disabled {
+    --knob-background: #{utils.get-color('medium')};
+    --knob-box-shadow: none;
+    --bar-background: #{utils.get-color('semi-light')};
+    --bar-background-active: #{utils.get-color('medium')};
+
+    &::part(tick) {
+      background: utils.get-color('semi-light');
+    }
+  }
+
+  &.range-has-pin {
+    padding: 0 $tick-width * 0.5;
+  }
+
+  &::part(knob) {
+    transition: interaction-state.transition();
+    transition-property: background;
+  }
+
+  &::part(pin) {
+    font-size: utils.font-size('xs');
+    color: var(--pin-color);
+    background-color: var(--pin-background);
+    padding: utils.size('xxxxs') utils.size('xxxs');
+    border-radius: 4px;
+    min-width: 40px;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: block;
+      border: solid transparent 6px;
+      border-top-color: var(--pin-background);
+    }
+  }
+
+  &::part(tick),
+  &::part(tick-active) {
+    border-radius: utils.border-radius('circle');
+    width: $tick-width;
+    height: $tick-height;
+    margin-top: 1px; // compensate for different height of ionic tick (8px)
+    z-index: 1;
+    margin-inline-start: -$tick-width * 0.5;
+  }
+
+  &::part(tick) {
+    background: utils.get-color('medium');
+  }
+}
+
+label {
+  font-size: utils.font-size('xs');
+  line-height: utils.line-height('xs');
+  color: utils.get-text-color('semi-dark');
+  margin-top: -#{utils.size('xxxs')};
+}

@@ -1,0 +1,58 @@
+name: "Visual Regression Tests"
+
+on:
+  push:
+    branches-ignore:
+      - "gh-pages"
+
+jobs:
+  chromatic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Kirby setup
+        uses: ./.github/actions/kirby-setup
+
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v4
+        with: 
+          main-branch-name: develop
+
+      - name: Build storybook
+        run: npx nx affected -t build-storybook
+
+      - name: Check if storybook dist folders exist
+        id: check_storybook_folders
+        run: |
+          if [ -d ${{ github.workspace }}/dist/storybook/designsystem ]; then
+            echo "designsystem=true" >> $GITHUB_OUTPUT
+          fi
+          if [ -d ${{ github.workspace }}/dist/storybook/extensions/angular ]; then
+            echo "extensions_angular=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Publish Designsystem  to Chromatic
+        uses: chromaui/action@latest  
+        # If designsystem storybook dist has been built, it means project might have been affected and should be tested
+        if: steps.check_storybook_folders.outputs.designsystem == 'true'
+        with:
+          projectToken: ${{ secrets.DESIGNSYSTEM_CHROMATIC_PROJECT_TOKEN }}
+          workingDir: libs/designsystem
+          storybookBuildDir: ${{ github.workspace }}/dist/storybook/designsystem
+          autoAcceptChanges: "develop"
+          exitOnceUploaded: true
+
+      - name: Publish Extensions to Chromatic
+      # If extensions storybook dist has been built, it means project might have been affected and should be tested
+        if: steps.check_storybook_folders.outputs.extensions_angular == 'true'
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.EXTENSIONS_CHROMATIC_PROJECT_TOKEN }}
+          workingDir: libs/extensions/angular
+          storybookBuildDir: ${{ github.workspace }}/dist/storybook/extensions/angular
+          autoAcceptChanges: "develop"
+          exitOnceUploaded: true

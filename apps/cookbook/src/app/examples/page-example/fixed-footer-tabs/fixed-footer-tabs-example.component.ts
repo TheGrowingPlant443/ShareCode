@@ -1,0 +1,47 @@
+import { Component } from '@angular/core';
+import { AvatarComponent } from '@kirbydesign/designsystem/avatar';
+import { TabsModule } from '@kirbydesign/designsystem/tabs';
+import { IconModule } from '@kirbydesign/designsystem/icon';
+import { ThemeColorDirective } from '@kirbydesign/designsystem/shared';
+import { BadgeComponent } from '@kirbydesign/designsystem/badge';
+
+const template = `<!-- This container is only needed due to layout of larger screen sizes -->
+<div class="container">
+  <div class="app-header">
+    <!-- Hidden on small screen sizes-->
+    <kirby-avatar size="sm" overlay="true" text="Logo" class="logo"></kirby-avatar>
+  </div>
+
+  <kirby-tab-bar>
+    <kirby-tab-button tab="overview">
+      <kirby-icon name="overview-outline"></kirby-icon>
+      Overview
+    </kirby-tab-button>
+
+    <kirby-tab-button tab="transfer">
+      <kirby-icon name="swap"></kirby-icon>
+      Transfer
+    </kirby-tab-button>
+
+    <kirby-tab-button tab="inbox">
+      <kirby-icon name="inbox-outline"></kirby-icon>
+      Inbox
+      <kirby-badge themeColor="danger">1</kirby-badge>
+    </kirby-tab-button>
+
+    <kirby-tab-button tab="menu">
+      <kirby-icon name="menu-no-decoration"></kirby-icon>
+      Menu
+    </kirby-tab-button>
+  </kirby-tab-bar>
+</div>`;
+
+@Component({
+  selector: 'cookbook-fixed-footer-tabs-example',
+  template,
+  styleUrls: ['./fixed-footer-tabs-example.component.scss'],
+  imports: [AvatarComponent, TabsModule, IconModule, ThemeColorDirective, BadgeComponent],
+})
+export class PageFixedFooterTabsExampleComponent {
+  static template = template;
+}

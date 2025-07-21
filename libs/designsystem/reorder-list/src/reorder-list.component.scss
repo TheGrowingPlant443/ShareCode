@@ -1,0 +1,94 @@
+@use '@kirbydesign/core/src/scss/utils';
+
+ion-backdrop {
+  opacity: 0.3;
+  z-index: 101;
+  position: fixed;
+}
+
+.reorder-selected {
+  box-shadow: none;
+  opacity: 1;
+  z-index: 104;
+
+  kirby-card {
+    transform: scale(1.05, 1.05);
+
+    & div:first-child {
+      border-top: 1px solid var(--kirby-background-color);
+    }
+  }
+
+  @include utils.slotted('kirby-item') {
+    box-shadow: 0 0 10px rgb(0 0 0 / 40%);
+    transform: scale(1.05, 1.05);
+    border-radius: utils.border-radius('n');
+    overflow: hidden;
+  }
+}
+
+.reorder-list-active {
+  & > * {
+    position: relative;
+    z-index: 103;
+  }
+
+  & > .reorder-selected {
+    z-index: 104;
+  }
+
+  & div:first-child {
+    border-top: none;
+  }
+
+  @include utils.slotted('div:last-child kirby-item') {
+    border-bottom-left-radius: utils.border-radius('n');
+    border-bottom-right-radius: utils.border-radius('n');
+    overflow: hidden;
+  }
+
+  .reorder-selected {
+    @include utils.slotted('kirby-item') {
+      box-shadow: 0 0 10px rgb(0 0 0 / 40%);
+      transform: scale(1.05, 1.05);
+      border-radius: utils.border-radius('n');
+      overflow: hidden;
+    }
+  }
+}
+
+:host > ion-reorder-group > div {
+  border-bottom: 20px transparent solid;
+
+  &:last-child {
+    border-bottom-width: 0;
+  }
+}
+
+kirby-card {
+  overflow: inherit;
+  z-index: auto;
+
+  @include utils.slotted('div:last-child ion-reorder-group div:last-child>kirby-item') {
+    border-bottom-left-radius: utils.border-radius('n');
+    border-bottom-right-radius: utils.border-radius('n');
+    overflow: hidden;
+  }
+
+  @include utils.slotted('div kirby-item') {
+    z-index: 1; // for showing rounded corners on ios devices
+  }
+
+  @include utils.slotted('.content-layer > div:first-child > kirby-item') {
+    border-radius: utils.border-radius('n');
+    overflow: hidden;
+  }
+
+  @include utils.slotted('div .reorder-list-active kirby-item') {
+    z-index: 103;
+  }
+
+  & div:first-child {
+    border-top: 1px solid var(--kirby-background-color);
+  }
+}

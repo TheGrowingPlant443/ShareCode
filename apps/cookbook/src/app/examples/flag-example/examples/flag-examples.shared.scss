@@ -1,0 +1,39 @@
+@use '@kirbydesign/core/src/scss/utils';
+
+:host {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: utils.size('s');
+  flex-wrap: wrap;
+
+  > * {
+    margin-right: utils.size('s');
+    margin-bottom: utils.size('s');
+  }
+
+  &.align-top {
+    align-items: flex-start;
+  }
+}
+
+kirby-flag {
+  position: relative;
+}
+
+kirby-flag[title] {
+  margin-bottom: utils.size('s');
+
+  &::before {
+    content: '';
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(100%);
+    font-size: utils.font-size('xs');
+    text-align: center;
+  }
+
+  &[title='(default)']::before {
+    content: '(default)';
+  }
+}

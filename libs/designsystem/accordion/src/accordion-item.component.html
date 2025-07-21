@@ -1,0 +1,31 @@
+<div class="content-layer">
+  <div
+    (click)="_onToggleExpanded($event)"
+    (keydown.ENTER)="_onToggleExpanded($event)"
+    (keydown.space)="_onToggleExpanded($event)"
+    class="header"
+    role="button"
+    [class.disabled]="isDisabled"
+    [tabindex]="isDisabled ? -1 : 0"
+    [class.expanded]="isExpanded"
+    [attr.aria-disabled]="isDisabled ? true : undefined"
+    [attr.aria-expanded]="isExpanded"
+    [attr.aria-controls]="_contentId"
+    [id]="_titleId"
+  >
+    <span class="state-layer" aria-hidden="true"></span>
+    <div class="title">{{ getTitle() }}</div>
+    <kirby-icon name="arrow-down"></kirby-icon>
+  </div>
+  <div
+    class="content"
+    role="region"
+    [attr.aria-labelledby]="_titleId"
+    [id]="_contentId"
+    [@isExpanded]="!!isExpanded"
+  >
+    <div class="content-body" [class.padding]="hasPadding">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

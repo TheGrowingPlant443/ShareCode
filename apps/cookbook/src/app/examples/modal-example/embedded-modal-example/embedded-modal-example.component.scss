@@ -1,0 +1,64 @@
+@use '@kirbydesign/core/src/scss/utils';
+
+.example-properties {
+  display: none;
+
+  @include utils.media('>=medium') {
+    display: unset;
+  }
+
+  dl {
+    display: grid;
+    grid-template: auto / auto 1fr;
+
+    dt {
+      padding-right: utils.size('xxxs');
+    }
+
+    dd {
+      margin: 0;
+      font-style: italic;
+    }
+  }
+}
+
+kirby-card.nested-modal-configuration {
+  margin-top: utils.size('l');
+  margin-bottom: utils.size('l');
+
+  details {
+    margin-top: utils.size('m');
+    border: 1px solid utils.get-color('medium');
+    border-radius: utils.size('xxxs');
+    padding: utils.size('xxs') utils.size('xxs') 0;
+
+    summary {
+      cursor: pointer;
+      margin: -#{utils.size('xxs')} -#{utils.size('xxs')} 0;
+      padding: utils.size('xxs');
+    }
+
+    &[open] {
+      padding: utils.size('xxs');
+      border-bottom-left-radius: utils.size('s');
+      border-bottom-right-radius: utils.size('s');
+
+      summary {
+        border-bottom: 1px dashed utils.get-color('medium');
+        margin-bottom: utils.size('xs');
+      }
+    }
+  }
+}
+
+kirby-form-field {
+  margin-top: utils.size('m');
+}
+
+.size-selector-heading {
+  margin-bottom: 0;
+
+  em {
+    font-size: smaller;
+  }
+}

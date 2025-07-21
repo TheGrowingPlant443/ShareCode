@@ -1,0 +1,162 @@
+@use 'sass:math';
+@use 'sass:map';
+@use '@kirbydesign/core/src/scss/interaction-state';
+@use '@kirbydesign/core/src/scss/utils';
+
+$spacing-to-edge: map.get(utils.$checkbox-radio-spacing, 'to-edge');
+$spacing-to-label: map.get(utils.$checkbox-radio-spacing, 'to-label');
+
+:host {
+  display: inline-flex;
+
+  &:has(ion-toggle.in-item.toggle-justify-space-between) {
+    width: 100%;
+  }
+
+  &.has-hidden-label {
+    &:has(ion-toggle.in-item) {
+      // reset position when toggle is in item and has hidden label
+      // to ensure that it fills out its parent container
+      // so the entire item becomes clickable
+      position: initial;
+
+      ion-toggle {
+        position: initial;
+
+        &::part(label) {
+          position: initial;
+        }
+
+        &::part(label-text-wrapper) {
+          margin-inline: 0;
+        }
+      }
+    }
+
+    &[slot='end'] {
+      ion-toggle {
+        margin-inline-start: $spacing-to-label;
+      }
+    }
+
+    .hidden-label {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+    }
+  }
+}
+
+ion-toggle {
+  @include interaction-state.apply-focus-part($part: 'track') {
+    // Overflow and contain style needed to make focus ring visible as per ionic docs
+    // https://ionicframework.com/docs/api/toggle#customizing-overflow
+    overflow: visible;
+    contain: none;
+  }
+
+  $background: 'semi-dark';
+  $background-checked: 'success';
+  $handle-background: 'white';
+
+  @include interaction-state.apply-hover {
+    // Not checked
+    --track-background: #{interaction-state.get-state-color($background, 's')};
+    --handle-background: #{interaction-state.get-state-color($handle-background, 'xxxs')};
+
+    // Checked
+    --track-background-checked: #{interaction-state.get-state-color($background-checked, 's')};
+    --handle-background-checked: #{interaction-state.get-state-color($handle-background, 'xxxs')};
+  }
+
+  @include interaction-state.apply-active {
+    // Not checked
+    --track-background: #{interaction-state.get-state-color($background, 'l')};
+    --handle-background: #{interaction-state.get-state-color($handle-background, 'xxs')};
+
+    // Checked
+    --track-background-checked: #{interaction-state.get-state-color($background-checked, 'l')};
+    --handle-background-checked: #{interaction-state.get-state-color($handle-background, 'xxs')};
+  }
+
+  // Wrap declarations to avoid mixing with nested rules.
+  // See: https://sass-lang.com/documentation/breaking-changes/mixed-decls/
+  /* stylelint-disable no-duplicate-selectors */
+  & {
+    // Not checked
+    --track-background: #{utils.get-color($background)};
+    --handle-background: #{utils.get-color($handle-background)};
+
+    // Checked
+    --track-background-checked: #{utils.get-color($background-checked)};
+    --handle-background-checked: #{utils.get-color($handle-background)};
+    --handle-transition: #{utils.get-transition-duration('quick')};
+    --handle-box-shadow: #{utils.get-elevation(2)};
+
+    // Ion v8 changed height on toggles to 31px. To make toggles still follow our 8,16,24,32 pixel-size pattern, we force the toggle back to 32px
+
+    $toggle-size: utils.size('l');
+    $toggle-border-size: utils.size('xxxxs');
+    $toggle-handle-size: $toggle-size - ($toggle-border-size * 2);
+
+    --handle-height: #{$toggle-handle-size};
+    --handle-width: #{$toggle-handle-size};
+    --border-radius: #{math.div($toggle-size, 2)};
+
+    &::part(track) {
+      height: $toggle-size;
+    }
+  }
+
+  ::part(label-text-wrapper) {
+    line-height: utils.line-height('n');
+    white-space: pre-line;
+  }
+
+  // Overrides for kirby-toggle inside kirby-item
+  &.in-item {
+    &::part(label) {
+      align-items: center;
+      padding-inline: 0;
+    }
+
+    &::part(label),
+    &::part(label-text-wrapper) {
+      margin-block: 0;
+    }
+
+    &.toggle-label-placement-start {
+      &::part(label-text-wrapper) {
+        margin-inline: 0 $spacing-to-label;
+      }
+    }
+
+    &.toggle-label-placement-end {
+      &::part(label-text-wrapper) {
+        margin-inline: $spacing-to-label 0;
+      }
+    }
+  }
+  /* stylelint-enable no-duplicate-selectors */
+}
+
+/*
+* For now, Kirby defaults to the legacy ion-toggle to not force users into 
+* providing a label for each toggle. The legacy toggle has additional padding  
+* in Ionic v7 when inside an item that needs to be reset.
+*/
+ion-toggle.in-item.legacy-toggle {
+  padding: 0;
+}
+
+:host-context(kirby-item) {
+  z-index: utils.z('default'); // Makes whole kirby-item clickable above item-inner.
+
+  ion-toggle {
+    margin: 0;
+  }
+
+  &[slot='start'] {
+    margin-inline-end: $spacing-to-label;
+  }
+}
